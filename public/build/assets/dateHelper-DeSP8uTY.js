@@ -1,0 +1,1 @@
+function n(e){return(typeof e=="string"?new Date(e):e).toLocaleString("en-US",{weekday:"long",year:"numeric",month:"long",day:"2-digit",hour:"numeric",minute:"2-digit",hour12:!0}).replace(","," at")}export{n as f};

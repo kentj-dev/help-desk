@@ -1,4 +1,25 @@
-export function truncateText(str: string, max = 75) {
-    if (!str) return '';
-    return str.length > max ? str.slice(0, max) + '...' : str;
+export function stripHtmlTags(input: string): string {
+  return input.replace(/<\/?[^>]+(>|$)/g, "");
+}
+
+export function truncateText(text: string, maxLength: number): string {
+  const cleanText = stripHtmlTags(text);
+  return cleanText.length > maxLength
+    ? cleanText.substring(0, maxLength) + "..."
+    : cleanText;
+}
+
+export function ticketStatus(status: string): string {
+  switch (status) {
+    case "open":
+      return "Open";
+    case "on-going":
+      return "On-going";
+    case "resolved":
+      return "Resolved";
+    case "rejected":
+      return "Rejected";
+    default:
+      return status.charAt(0).toUpperCase() + status.slice(1);
+  }
 }

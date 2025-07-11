@@ -15,7 +15,6 @@ export default function AppLayout({ children, breadcrumbs, ...props }: AppLayout
     return (
         <AppLayoutTemplate isClientRoute={isClientRoute} breadcrumbs={breadcrumbs} {...props}>
             {children}
-            <Toaster />
         </AppLayoutTemplate>
     );
 }

@@ -5,20 +5,43 @@ use App\Http\Controllers\RoleManagement\RolesController;
 use App\Http\Controllers\RoleManagement\ModulesController;
 use App\Http\Controllers\User\ActivateController;
 use App\Http\Controllers\RoleManagement\UserController;
+use App\Http\Controllers\TicketsController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\DashboardController;
 use App\Http\Middleware\EnsureUserIsActivated;
 use App\Http\Middleware\RedirectIfActivated;
 
-// Route::get('/run-migrate', function () {
-//     Artisan::call('migrate', [
-//         '--force' => true, // Run without confirmation
-//     ]);
-//     return 'Migration run successfully!';
-// });
+Route::get('/run-migrate', function () {
+    Artisan::call('migrate', [
+        '--force' => true, // Run without confirmation
+    ]);
+    return 'Migration run successfully!';
+});
 
 // * if dealing with files, use post method even in updating.
+
+Route::middleware(['auth', 'verified', EnsureUserIsActivated::class, 'module.access'])->group(function () {
+    Route::get('/', [TicketsController::class, 'index'])
+    ->name('tickets');
+
+    Route::get('create-ticket', [TicketsController::class, 'createTicket'])
+        ->name('create.ticket');
+
+    Route::post('create-ticket', [TicketsController::class, 'submitCreateTicket'])
+        ->name('submit.create.ticket');
+
+    Route::post('tickets/update/client-type', [TicketsController::class, 'updateClientType'])
+        ->name('update.client-type');
+    Route::post('tickets/update/mode-of-addressing', [TicketsController::class, 'updateModeOfAddressing'])
+        ->name('update.mode-of-addressing');
+    Route::post('tickets/update/assigned-to', [TicketsController::class, 'updateAssignedTo'])
+        ->name('update.assigned-to');
+    Route::post('tickets/update/status', [TicketsController::class, 'updateStatus'])
+        ->name('update.status');
+    Route::post('tickets/add/reply', [TicketsController::class, 'addReply'])
+        ->name('add.reply');
+});
 
 Route::middleware(['auth', 'verified', RedirectIfActivated::class])->group(function () {
     Route::get('activate-account', [ActivateController::class, 'create'])

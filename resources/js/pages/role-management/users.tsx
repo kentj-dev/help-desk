@@ -62,7 +62,7 @@ export default function Users({ users, tableData, allUsersCount }: UsersProps) {
     const getInitials = useInitials();
 
     const [openAddModal, setOpenAddModal] = useState(false);
-    const [idToDelete, setIdToDelete] = useState<number | null>(null);
+    const [idToDelete, setIdToDelete] = useState<string | null>(null);
     const [openDeleteModal, setOpenDeleteModal] = useState(false);
 
     const {
@@ -119,7 +119,7 @@ export default function Users({ users, tableData, allUsersCount }: UsersProps) {
         });
     };
 
-    const deleteUser = (userId: number) => {
+    const deleteUser = (userId: string) => {
         const promise = new Promise<void>((resolve, reject) => {
             deleteInertia(route('users.delete-user', userId), {
                 preserveScroll: true,
