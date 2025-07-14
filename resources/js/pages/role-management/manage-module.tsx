@@ -177,7 +177,7 @@ export default function ManageModule({ module, modules, roles }: ManageModulePro
                                 placeholder="Name"
                                 name="name"
                                 autoComplete="name"
-                                disabled={!canUpdate('Modules')}
+                                disabled={!canUpdate('/modules')}
                             />
                         </div>
                     </div>
@@ -198,7 +198,7 @@ export default function ManageModule({ module, modules, roles }: ManageModulePro
                                 placeholder="Description"
                                 name="description"
                                 autoComplete="description"
-                                disabled={!canUpdate('Modules')}
+                                disabled={!canUpdate('/modules')}
                             />
                         </div>
                     </div>
@@ -225,7 +225,7 @@ export default function ManageModule({ module, modules, roles }: ManageModulePro
                                 placeholder="Icon"
                                 name="icon"
                                 autoComplete="icon"
-                                disabled={!canUpdate('Modules')}
+                                disabled={!canUpdate('/modules')}
                             />
                         </div>
                         {Icon && (
@@ -250,7 +250,7 @@ export default function ManageModule({ module, modules, roles }: ManageModulePro
                                 placeholder="Order"
                                 name="order"
                                 autoComplete="order"
-                                disabled={!canUpdate('Modules')}
+                                disabled={!canUpdate('/modules')}
                             />
                         </div>
                     </div>
@@ -271,7 +271,7 @@ export default function ManageModule({ module, modules, roles }: ManageModulePro
                                         role="combobox"
                                         aria-expanded={openParentModule}
                                         className="w-[215px] justify-between rounded-sm disabled:opacity-100"
-                                        disabled={!canUpdate('Modules')}
+                                        disabled={!canUpdate('/modules')}
                                     >
                                         {parentModuleValue ? modules.find((m) => m.id === parentModuleValue)?.name : 'Select parent module...'}
                                         <ChevronsUpDown className="opacity-50" />
@@ -336,7 +336,7 @@ export default function ManageModule({ module, modules, roles }: ManageModulePro
                                 placeholder="Path"
                                 name="path"
                                 autoComplete="path"
-                                disabled={!canUpdate('Modules')}
+                                disabled={!canUpdate('/modules')}
                             />
                         </div>
                     </div>
@@ -354,7 +354,7 @@ export default function ManageModule({ module, modules, roles }: ManageModulePro
                                 id="is_client-mode"
                                 checked={data.is_client}
                                 onCheckedChange={(checked) => setData('is_client', !!checked)}
-                                disabled={!canUpdate('Modules')}
+                                disabled={!canUpdate('/modules')}
                             />
                         </div>
                     </div>
@@ -376,7 +376,7 @@ export default function ManageModule({ module, modules, roles }: ManageModulePro
                                 placeholder="Group Title"
                                 name="group_title"
                                 autoComplete="group_title"
-                                disabled={!canUpdate('Modules')}
+                                disabled={!canUpdate('/modules')}
                             />
                         </div>
                     </div>
@@ -408,7 +408,7 @@ export default function ManageModule({ module, modules, roles }: ManageModulePro
                                                     checked={data.rolesId.includes(role.id)}
                                                     onCheckedChange={(checked) => handleToggle(role.id, !!checked)}
                                                     disabled={
-                                                        !role.for_admin || !canUpdate('Modules') || currentUserRoles.some((r) => r.id === role.id)
+                                                        !role.for_admin || !canUpdate('/modules') || currentUserRoles.some((r) => r.id === role.id)
                                                     }
                                                 />
                                                 <label
@@ -449,7 +449,7 @@ export default function ManageModule({ module, modules, roles }: ManageModulePro
                                                         : data.available_actions.filter((a) => a !== action);
                                                     setData('available_actions', updatedActions);
                                                 }}
-                                                disabled={!canUpdate('Modules')}
+                                                disabled={!canUpdate('/modules')}
                                             />
                                             <label htmlFor={checkboxId} className="text-sm leading-none font-medium">
                                                 {action.replace('can_', '').replace('_', ' ').toUpperCase()}
@@ -460,7 +460,7 @@ export default function ManageModule({ module, modules, roles }: ManageModulePro
                             </div>
                         </div>
                     </div>
-                    {canUpdate('Modules') && (
+                    {canUpdate('/modules') && (
                         <>
                             <div className="mt-4 flex items-center gap-2">
                                 <Button

@@ -1,7 +1,6 @@
 import TicketsAction from '@/components/tickets/tickets-actions';
 import TicketsPreview from '@/components/tickets/tickets-details';
 import TicketsList from '@/components/tickets/tickets-list';
-import { Button } from '@/components/ui/button';
 import AppLayoutTemplate from '@/layouts/app/app-header-layout';
 import { SharedData, User } from '@/types';
 import { Head, router, usePage } from '@inertiajs/react';
@@ -25,10 +24,14 @@ type AssignedToTicket = {
     assigned_by_id: string;
 };
 
-type Reply = {
+export type Reply = {
     id: string;
     details: string;
     owner: User;
+
+    replies: Reply[];
+    reply_id: string | null;
+
     created_at: string;
     updated_at: string;
 };
@@ -55,7 +58,7 @@ export type Ticket = {
     created_at: string;
     updated_at: string;
 };
-
+  
 interface TicketsProps {
     tickets: Ticket[];
     selectedTicket: Ticket;
@@ -74,21 +77,8 @@ export default function Tickets({ tickets, selectedTicket, modeOfAddressings, st
             <AppLayoutTemplate isClientRoute={isClientRoute}>
                 <Head title="Tickets" />
                 <div className="px-4 py-6">
-                    <div className="pb-2">
-                        <Button
-                            variant={'success'}
-                            onClick={() =>
-                                router.visit(route('create.ticket'), {
-                                    preserveScroll: true,
-                                })
-                            }
-                        >
-                            <CirclePlus />
-                            Create Ticket
-                        </Button>
-                    </div>
                     {tickets.length > 0 ? (
-                        <div className="flex gap-4">
+                        <div className={`grid grid-cols-1 ${isAdmin ? 'md:grid-cols-[1fr_750px_0.5fr]' : 'md:grid-cols-[1fr_900px]'} gap-4`}>
                             {/* first column */}
                             <TicketsList tickets={tickets} statusCounts={statusCounts} selectedTicket={selectedTicket} />
                             {/* end of firt column */}
@@ -114,6 +104,17 @@ export default function Tickets({ tickets, selectedTicket, modeOfAddressings, st
                             <div className="mb-2 text-4xl">📭</div>
                             <div className="text-sm font-medium md:text-base">No tickets yet in the system.</div>
                             <div className="mt-1 text-xs text-gray-400">All caught up for now — new tickets will appear here.</div>
+
+                            <button
+                                onClick={() =>
+                                    router.visit(route('create.ticket'), {
+                                        preserveScroll: true,
+                                    })
+                                }
+                                className="mt-4 flex items-center gap-2 rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white shadow transition hover:bg-blue-700"
+                            >
+                                <CirclePlus size={16} /> Create Ticket
+                            </button>
                         </div>
                     )}
                 </div>

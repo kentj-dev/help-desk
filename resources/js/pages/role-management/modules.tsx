@@ -189,7 +189,7 @@ export default function Modules({
           description="Manage the modules of the system."
         />
         <div className="flex flex-col gap-2">
-          {canCreate("Modules") && (
+          {canCreate("/modules") && (
             <Dialog open={openAddModal} onOpenChange={setOpenAddModal}>
               <DialogTrigger asChild>
                 <Button className="w-max">
@@ -454,7 +454,7 @@ export default function Modules({
                 label: "Manage Module",
                 className: "bg-[#6366f1] hover:bg-[#6366f1]/90",
                 icon: <SquareDashedMousePointer size={14} />,
-                showIf: (module) => canUpdate("Modules"),
+                showIf: (module) => canUpdate("/modules"),
                 onClick: (module) =>
                   router.visit(route("modules.view", module.id), {
                     preserveScroll: true,
@@ -464,7 +464,7 @@ export default function Modules({
                 label: "",
                 className: "bg-[#983b3b] hover:bg-[#983b3b]/90",
                 icon: <Trash2 size={14} />,
-                showIf: (module) => canDelete("Modules"),
+                showIf: (module) => canDelete("/modules"),
                 onClick: (module) => {
                   setIdToDelete(module.id);
                   setOpenDeleteModal(true);

@@ -11,7 +11,9 @@ use Illuminate\Support\Str;
 
 class Role extends Model
 {
-    use HasFactory, Notifiable, SoftDeletes;
+    use HasFactory;
+    use Notifiable;
+    use SoftDeletes;
 
     protected $keyType = 'string';
     public $incrementing = false;
@@ -24,6 +26,10 @@ class Role extends Model
 
     protected $hidden = [
         'deleted_at',
+    ];
+
+    protected $casts = [
+        'for_admin' => 'boolean',
     ];
 
     public function users()

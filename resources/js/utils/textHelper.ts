@@ -1,5 +1,12 @@
+function decodeHtmlEntities(input: string): string {
+  const txt = document.createElement("textarea");
+  txt.innerHTML = input;
+  return txt.value;
+}
+
 export function stripHtmlTags(input: string): string {
-  return input.replace(/<\/?[^>]+(>|$)/g, "");
+  const noHtml = input.replace(/<\/?[^>]+(>|$)/g, "");
+  return decodeHtmlEntities(noHtml);
 }
 
 export function truncateText(text: string, maxLength: number): string {

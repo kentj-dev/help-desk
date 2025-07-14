@@ -180,7 +180,7 @@ const ViewUser: React.FC<ViewUserProps> = ({ user, roles }) => {
                                 placeholder="Email"
                                 required
                                 onChange={(e) => setData('email', e.target.value)}
-                                disabled={!canUpdate('Users')}
+                                disabled={!canUpdate('/users')}
                                 className="disabled:opacity-100"
                                 autoComplete="email"
                             />
@@ -219,7 +219,7 @@ const ViewUser: React.FC<ViewUserProps> = ({ user, roles }) => {
                         </div>
                     </div>
 
-                    {canUpdate('Users') && (
+                    {canUpdate('/users') && (
                         <div className="flex items-stretch gap-3 border-t text-sm font-medium">
                             <div className="flex w-100 flex-col gap-0 border-r py-3 pr-3">
                                 <span>New Avatar</span>
@@ -235,14 +235,14 @@ const ViewUser: React.FC<ViewUserProps> = ({ user, roles }) => {
                                     name="avatar"
                                     accept="image/*"
                                     onChange={onFileChange}
-                                    disabled={!canUpdate('Users')}
+                                    disabled={!canUpdate('/users')}
                                     className="disabled:opacity-100"
                                 />
                             </div>
                         </div>
                     )}
 
-                    {canUpdate('Users') && (
+                    {canUpdate('/users') && (
                         <div className="flex items-stretch gap-3 border-t text-sm font-medium">
                             <div className="flex w-100 flex-col gap-0 border-r py-3 pr-3">
                                 <span>Password Reset</span>
@@ -293,7 +293,7 @@ const ViewUser: React.FC<ViewUserProps> = ({ user, roles }) => {
                                 className="border-b text-xs focus:outline-none disabled:opacity-100"
                                 value={roleSearch}
                                 onChange={(e) => setRoleSearch(e.target.value)}
-                                disabled={!canUpdate('Users')}
+                                disabled={!canUpdate('/users')}
                             />
                             <ScrollArea className="flex max-h-52 w-48 flex-col gap-2 rounded p-2" id="roles">
                                 {roles.filter((role) => role.name.toLowerCase().includes(roleSearch.toLowerCase())).length > 0 ? (
@@ -305,7 +305,7 @@ const ViewUser: React.FC<ViewUserProps> = ({ user, roles }) => {
                                                     id={role.id}
                                                     checked={data.rolesId.includes(role.id)}
                                                     onCheckedChange={(checked) => handleToggle(role.id, !!checked)}
-                                                    disabled={!canUpdate('Users')}
+                                                    disabled={!canUpdate('/users')}
                                                 />
                                                 <label
                                                     htmlFor={role.id}
@@ -322,7 +322,7 @@ const ViewUser: React.FC<ViewUserProps> = ({ user, roles }) => {
                         </div>
                     </div>
 
-                    {canUpdate('Users') && (
+                    {canUpdate('/users') && (
                         <div className="flex items-center gap-2 pt-3">
                             <Button
                                 type="submit"

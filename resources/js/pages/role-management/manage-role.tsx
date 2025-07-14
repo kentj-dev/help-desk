@@ -49,7 +49,7 @@ type ManageRoleForm = {
     permissions: Record<string, string[]>;
 };
 
-export default function RolePermissions({ role, modules }: RolePermissionsProps) {
+export default function RolePermissions({ role, modules }: RolePermissionsProps) {    
     const breadcrumbs: BreadcrumbItem[] = [
         {
             title: 'Roles',
@@ -185,7 +185,7 @@ export default function RolePermissions({ role, modules }: RolePermissionsProps)
                         <div className="my-auto py-3">
                             <Switch
                                 id="for-admin"
-                                checked={data.for_admin ? true : false}
+                                checked={data.for_admin}
                                 onCheckedChange={(checked) => {
                                     const isChecked = !!checked;
                                     setData('for_admin', isChecked);

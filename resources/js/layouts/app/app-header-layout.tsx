@@ -26,7 +26,7 @@ export default function AppHeaderLayout({
                 </div>
                 <div className="mt-1 text-xs text-gray-400">&copy; {new Date().getFullYear()} CHEDRO XII. All rights reserved.</div>
             </footer>
-            <Toaster />
+            <Toaster richColors theme='light'/>
         </AppShell>
     );
 }

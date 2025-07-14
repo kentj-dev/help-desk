@@ -28,10 +28,10 @@ export function NavMainVer2({ navigations }: NavMainVer2Props) {
     };
 
     return (
-        <NavigationMenu className="flex h-full w-full items-stretch" viewport={false}>
+        <NavigationMenu className="relative flex h-full w-full items-stretch" viewport={false}>
             <NavigationMenuList className="relative flex h-full items-stretch space-x-2">
                 {Object.entries(navigations).map(([groupTitle, modules]) => {
-                    const accessibleItems = modules.filter((mod: NavigationModule) => isModuleAccessible(mod.name));
+                    const accessibleItems = modules.filter((mod: NavigationModule) => isModuleAccessible(mod.path ?? mod.name));
                     if (accessibleItems.length === 0) return null;
 
                     const firstModule = accessibleItems[0];

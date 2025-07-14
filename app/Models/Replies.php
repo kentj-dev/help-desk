@@ -21,7 +21,8 @@ class Replies extends Model
     protected $fillable = [
         'details',
         'reply_owner_id',
-        'ticket_id'
+        'ticket_id',
+        'reply_id'
     ];
 
     protected $hidden = [
@@ -36,6 +37,16 @@ class Replies extends Model
     public function ticket()
     {
         return $this->belongsTo(Tickets::class, 'ticket_id');
+    }
+
+    public function parent()
+    {
+        return $this->belongsTo(Replies::class, 'reply_id');
+    }
+
+    public function replies()
+    {
+        return $this->hasMany(Replies::class, 'reply_id')->orderByDesc('updated_at');
     }
 
     public static function booted()
